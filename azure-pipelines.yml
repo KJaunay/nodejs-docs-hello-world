@@ -70,9 +70,9 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Azure Web App Deploy: '
             inputs:
-              azureSubscription: $(azureSubscription)
-              appType: webAppLinux
-              appName: $(webAppName)
+              azureSubscription: 'Pay-As-You-Go (fa8e018e-3a36-4104-ade8-7d8b267fe5b3)'
+              appType: 'webAppLinux'
+              appName: '$(webAppName)'
+              package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
               runtimeStack: 'NODE|10.10'
-              package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
               startUpCommand: 'npm run start'
