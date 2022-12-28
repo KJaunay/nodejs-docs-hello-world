@@ -12,7 +12,7 @@ variables:
   azureSubscription: '46850c5b-454e-4391-9dfc-1dcded28c8e7'
 
   # Web app name
-  webAppName: 'wywm'
+  webAppName: 'kjtech'
 
   # Environment name
   environmentName: 'dev'
