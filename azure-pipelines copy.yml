@@ -39,7 +39,7 @@ stages:
 
   - job: Test
     displayName: Test
-    pool: vmImageName
+    pool: $(vmImageName)
     steps:
       - script: |
           npm run test --if-present
