@@ -1,0 +1,8 @@
+parameters:
+- name: environment
+  displayName: displayEnvironment
+  type: string
+
+steps:
+- script: |
+    echo Hello ${{ parameters.environment }}!
