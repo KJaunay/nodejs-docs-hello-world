@@ -56,7 +56,7 @@ stages:
       - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
         artifact: drop
 
-- stage: Deploy to Test
+- stage: Test
   displayName: Deploy Test
   dependsOn: Build
   condition: succeeded()
