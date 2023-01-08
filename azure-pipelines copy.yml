@@ -21,7 +21,7 @@ variables:
 
 stages:
 - stage: Build
-  displayName: Build stage
+  displayName: Build & Test
   jobs:
   - job: Build
     displayName: Build
@@ -33,13 +33,17 @@ stages:
       inputs:
         versionSpec: '10.x'
       displayName: 'Install Node.js'
-
     - script: |
         npm install
         npm run build --if-present
-        npm run test --if-present
       displayName: 'npm install, build and test'
 
+  - job: Test
+    displayName: Test
+    pool: vmImageName
+    - script: |
+        npm run test --if-present
+      displayName: 'npm install, build and test'
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
@@ -52,14 +56,14 @@ stages:
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
 
-- stage: Deploy
-  displayName: Deploy stage
+- stage: Deploy to Test
+  displayName: Deploy Test
   dependsOn: Build
   condition: succeeded()
   jobs:
   - deployment: Deploy
     displayName: Deploy
-    environment: $(environmentName)
+    environment: test
     pool:
       vmImage: $(vmImageName)
     strategy:
